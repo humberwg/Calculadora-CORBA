@@ -6,6 +6,7 @@
 
 import Calculator.CalcPOA;
 import org.omg.CORBA.ORB;
+import java.util.*;
 
 /**
  *
@@ -25,7 +26,7 @@ public class CalcObject extends CalcPOA{
 	* @return calculation result
 	*/
     @Override
-    public int calculate(int type, int a, int b) {
+    public float calculate(int type, int a, int b) {
         long result;
         
         if (type == 1) {
@@ -37,8 +38,10 @@ public class CalcObject extends CalcPOA{
         else if (type == 3) {
             result = (long) a * b;
         }
-        else{
+        else if (type == 4){
             result = (long) a / b;
+        }else{
+            result = (long) Math.sqrt(a);
         }
         
         if (result >= Integer.MAX_VALUE) {
@@ -48,7 +51,7 @@ public class CalcObject extends CalcPOA{
             return Integer.MIN_VALUE;
         }
         else {
-            return (int) result;
+            return (float) result;
         }
     }
     
